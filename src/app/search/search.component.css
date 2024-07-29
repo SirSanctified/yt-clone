@@ -1,0 +1,26 @@
+.input-container {
+  flex: 1;
+}
+.input {
+  width: 100%;
+  min-width: 400px;
+  border: transparent;
+  background-color: transparent;
+  padding-inline: 8px;
+  padding-block: 6px;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  border-right: 1px solid #111;
+}
+
+@media screen and (max-width: 768px) {
+  .input {
+    min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .input {
+    min-width: 100px;
+  }
+}
