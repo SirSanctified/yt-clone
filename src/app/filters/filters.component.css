@@ -1,0 +1,8 @@
+.filter-container {
+  margin-left: 180px;
+  overflow-x: scroll;
+}
+
+.filter {
+  cursor: pointer;
+}

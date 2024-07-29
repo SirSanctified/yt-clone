@@ -8,11 +8,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { SearchComponent } from '../../search/search.component';
 import { RouterLink } from '@angular/router';
+import { FiltersComponent } from '../../filters/filters.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule, SearchComponent, RouterLink],
+  imports: [FontAwesomeModule, SearchComponent, RouterLink, FiltersComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

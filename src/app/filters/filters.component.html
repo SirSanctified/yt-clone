@@ -1,1 +1,7 @@
-<p>filters works!</p>
+<div class="filter-container d-flex align-items-center no-scrollbar mb-1 gap-2">
+  @for (filter of filters; track $index) {
+  <div class="px-2 filter py-1 rounded-1 text-capitalize text-nowrap">
+    {{ filter }}
+  </div>
+  }
+</div>

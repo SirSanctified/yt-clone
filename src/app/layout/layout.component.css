@@ -1,0 +1,5 @@
+.layout {
+  max-height: 100vh;
+  overflow-y: hidden;
+  max-width: 100vw;
+}
