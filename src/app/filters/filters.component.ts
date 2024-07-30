@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Filter } from '../youtube-videos.service';
 
 @Component({
   selector: 'app-filters',
@@ -8,21 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './filters.component.css',
 })
 export class FiltersComponent {
-  filters = [
-    'all',
-    'music',
-    'video',
-    'podcasts',
-    'computer science',
-    'programming',
-    'web development',
-    'javascript',
-    'angular',
-    'react',
-    'farming',
-    'gardening',
-    'cooking',
-    'cats',
-    'dogs',
-  ];
+  @Input() filters: Filter[] = [];
+  @Input() selectedFilter = 'All';
+  @Output() selectedFilterChange = new EventEmitter<string>();
+
+  setSelectedFilter(filter: string) {
+    this.selectedFilter = filter;
+    this.selectedFilterChange.emit(filter);
+  }
 }

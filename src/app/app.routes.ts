@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { ShortsComponent } from './shorts/shorts.component';
 import { TrendingComponent } from './trending/trending.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
+import { VideoDetailsComponent } from './video-details/video-details.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'playlists',
     component: PlaylistsComponent,
+  },
+  {
+    path: 'video/:videoId',
+    component: VideoDetailsComponent,
   },
 ];

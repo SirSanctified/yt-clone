@@ -1,8 +1,8 @@
-<div class="px-2 bg-white layout no-scrollbar">
-  <app-header />
-  <div class="d-flex gap-4">
-    <app-aside />
-    <div class="w-100 rounded">
+<div class="px-2 bg-white">
+  <app-header [(show)]="show" />
+  <div class="d-flex layout no-scrollbar gap-2">
+    <app-aside [show]="show" />
+    <div class="w-100 rounded content no-scrollbar p-3 pb-0">
       <router-outlet></router-outlet>
     </div>
   </div>

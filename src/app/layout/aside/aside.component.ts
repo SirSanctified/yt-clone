@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -29,6 +29,7 @@ import {
   styleUrl: './aside.component.css',
 })
 export class AsideComponent {
+  @Input() show: boolean = true;
   home = faHomeAlt;
   shorts = faBoltLightning;
   subs = faPhotoVideo;

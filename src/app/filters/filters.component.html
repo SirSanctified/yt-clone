@@ -1,7 +1,13 @@
-<div class="filter-container d-flex align-items-center no-scrollbar mb-1 gap-2">
+<div
+  class="filter-container d-flex align-items-center no-scrollbar pb-2 gap-2 px-2 w-100 me-3"
+>
   @for (filter of filters; track $index) {
-  <div class="px-2 filter py-1 rounded-1 text-capitalize text-nowrap">
-    {{ filter }}
+  <div
+    (click)="setSelectedFilter(filter.filter)"
+    class="px-2 filter py-1 rounded-1 text-capitalize text-nowrap"
+    [style]="filter.filter === selectedFilter ? 'background: #d9d9d9;' : ''"
+  >
+    {{ filter.filter }}
   </div>
   }
 </div>

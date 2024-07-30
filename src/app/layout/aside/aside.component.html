@@ -1,34 +1,45 @@
 <aside>
-  <nav class="d-flex flex-column align-items-start gap-2">
+  <nav
+    [class]="
+      show
+        ? 'd-flex flex-column align-items-start gap-2'
+        : 'd-flex flex-column align-items-center gap-2'
+    "
+  >
     <a
-      class="text-black text-decoration-none d-flex gap-3 align-items-center"
+      class="text-black text-decoration-none align-items-center d-flex"
+      [style]="show ? 'gap: 0.8rem' : 'flex-direction: column;'"
       routerLink="/"
     >
       <fa-icon [icon]="home"></fa-icon>
       <span>Home</span>
     </a>
     <a
-      class="text-black text-decoration-none d-flex gap-3 align-items-center"
+      class="text-black text-decoration-none align-items-center d-flex"
+      [style]="show ? 'gap: 0.8rem' : 'flex-direction: column;'"
       routerLink="/shorts"
     >
       <fa-icon [icon]="shorts"></fa-icon>
       <span>Shorts</span>
     </a>
     <a
-      class="text-black text-decoration-none d-flex gap-3 align-items-center"
+      class="text-black text-decoration-none align-items-center d-flex"
+      [style]="show ? 'gap: 0.8rem' : 'flex-direction: column;'"
       routerLink="/subscriptons"
     >
       <fa-icon [icon]="subs"></fa-icon>
       <span>Subscriptions</span>
     </a>
-    <hr />
+    <hr [style]="show ? '' : 'display: none'" />
     <a
-      class="text-black text-decoration-none d-flex gap-3 align-items-center"
+      class="text-black text-decoration-none align-items-center d-flex"
+      [style]="show ? 'gap: 0.8rem' : 'flex-direction: column;'"
       routerLink="/user"
     >
       <fa-icon [icon]="user"></fa-icon>
-      <span>Your Channel</span>
+      <span>You</span>
     </a>
+    @if (show) {
     <a
       class="text-black text-decoration-none d-flex gap-3 align-items-center"
       routerLink="/history"
@@ -95,6 +106,7 @@
     </a>
     <hr />
     <a
+      [style]="show ? '' : 'display: none'"
       class="text-black text-decoration-none d-flex gap-3 align-items-center"
       routerLink="/settings"
     >
@@ -122,5 +134,6 @@
       <fa-icon [icon]="message"></fa-icon>
       <span>Send feedback</span>
     </a>
+    }
   </nav>
 </aside>
