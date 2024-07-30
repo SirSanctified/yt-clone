@@ -28,9 +28,9 @@
     @for (comment of commentsData?.data; track $index) {
     <div class="d-flex gap-2 align-items-start w-100">
       <img
-        [src]="comment.authorThumbnail[0].url"
+        [src]="comment?.authorThumbnail?.[0]?.url ?? '/images/default.png'"
         alt="User Thumbnail"
-        class="rounded-circle"
+        class="rounded-circle overflow-hidden"
         width="40"
         height="40"
       />
