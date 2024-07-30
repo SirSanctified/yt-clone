@@ -1,0 +1,8 @@
+.filter-container {
+  overflow-x: scroll;
+  background-color: white;
+}
+
+.filter {
+  cursor: pointer;
+}

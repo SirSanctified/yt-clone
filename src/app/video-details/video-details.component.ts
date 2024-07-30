@@ -28,6 +28,7 @@ import { formatDistanceStrict } from 'date-fns';
 import { FormatNumberPipe } from '../home/home.component';
 import { type VideoResponse } from './../youtube-videos.service';
 import { YoutubeVideosService } from '../youtube-videos.service';
+import { RelatedVideosComponent } from './related-videos/related-videos.component';
 
 @Pipe({
   name: 'duration',
@@ -79,6 +80,7 @@ export class TimeFromNowPipe implements PipeTransform {
     DurationPipe,
     FormatNumberPipe,
     TimeFromNowPipe,
+    RelatedVideosComponent,
   ],
   templateUrl: './video-details.component.html',
   styleUrl: './video-details.component.css',
@@ -116,7 +118,6 @@ export class VideoDetailsComponent implements OnInit {
       this.videoId = params['videoId'];
     });
 
-    console.log(this.videoId);
     this.youtubeVideosService.getVideo(this.videoId).then((data) => {
       this.videoData = data;
     });

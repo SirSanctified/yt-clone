@@ -1,8 +1,20 @@
-<div class="h-100">
-  <app-filters [filters]="filters" [(selectedFilter)]="selectedFilter" />
-  <div class="custom-row gap-2 no-scrollbar mt-4">
-    @for (video of videos; track $index) { @if ( videos[$index].type === 'video'
-    ) {
+<div class="w-100 p-3">
+  <div
+    class="filter-container d-flex align-items-center no-scrollbar pb-2 gap-2 px-2 me-3"
+  >
+    @for (filter of filters; track $index) {
+    <div
+      (click)="setSelectedFilter(filter)"
+      class="px-2 filter py-1 rounded-1 text-capitalize text-nowrap"
+      [style]="filter === selectedFilter ? 'background: #d9d9d9;' : ''"
+    >
+      {{ filter }}
+    </div>
+    }
+  </div>
+
+  <div class="d-flex flex-column gap-2 no-scrollbar">
+    @if (relatedVideos) { @for (video of relatedVideos.data; track $index) {
     <a
       routerLink="/video/{{ video.videoId }}"
       class="rounded-3 p-0 text-decoration-none"
@@ -26,21 +38,11 @@
               {{ video.title }}
             </div>
           </div>
-          <div>
-            <button class="btn fs-5 opacity-75 btn-link text-black">
-              <fa-icon [icon]="menu"></fa-icon>
-            </button>
-          </div>
-        </div>
-        <div class="d-flex align-items-center ps-5 mt-1 gap-2">
-          <p class="text-black-50">
-            {{ video.viewCount | formatNumber }} views.
-          </p>
-          <p class="text-black-50">{{ video.publishedTimeText }}</p>
         </div>
       </div>
     </a>
-
-    } }
+    } } @else {
+    <div class="text-center p-3">No related videos found</div>
+    }
   </div>
 </div>
