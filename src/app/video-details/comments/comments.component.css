@@ -1,0 +1,9 @@
+.textarea {
+  border: 0 0 1px 0;
+  resize: vertical;
+  border-color: #d9d9d9;
+}
+
+.dislike-btn {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}

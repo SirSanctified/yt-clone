@@ -79,7 +79,18 @@ export interface RelatedVideo {
   continuation: string;
   data: VideoData[];
 }
-
+export interface CommentData {
+  commentId: string;
+  authorText: string;
+  authorChannelId: string;
+  authorThumbnail: Thumbnail[];
+  textDisplay: string;
+  publishedTimeText: string;
+  likesCount: string;
+  replyCount: number;
+  replyToken: string;
+  authorIsChannelOwner: boolean;
+}
 export interface VideoResponse {
   id: string;
   title: string;
@@ -114,6 +125,12 @@ export interface VideoResponse {
   relatedVideos: RelatedVideo;
 }
 
+export interface CommentResponse {
+  commentsCount: string;
+  continuation: string;
+  data: CommentData[];
+  msg: string;
+}
 export interface HomeVideoResponse {
   filters: Filter[];
   continuation: string;
@@ -147,5 +164,12 @@ export class YoutubeVideosService {
     const data: VideoResponse = await response.json();
     return data;
   }
-  getVideoComments() {}
+  async getVideoComments(id: string) {
+    const response = await fetch(
+      `${this.baseUrl}comments?id=${id}`,
+      this.options
+    );
+    const data: CommentResponse = await response.json();
+    return data;
+  }
 }

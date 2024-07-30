@@ -29,6 +29,7 @@ import { FormatNumberPipe } from '../home/home.component';
 import { type VideoResponse } from './../youtube-videos.service';
 import { YoutubeVideosService } from '../youtube-videos.service';
 import { RelatedVideosComponent } from './related-videos/related-videos.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @Pipe({
   name: 'duration',
@@ -81,6 +82,7 @@ export class TimeFromNowPipe implements PipeTransform {
     FormatNumberPipe,
     TimeFromNowPipe,
     RelatedVideosComponent,
+    CommentsComponent,
   ],
   templateUrl: './video-details.component.html',
   styleUrl: './video-details.component.css',
@@ -117,8 +119,9 @@ export class VideoDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.videoId = params['videoId'];
     });
-
+    if (this.videoData) return;
     this.youtubeVideosService.getVideo(this.videoId).then((data) => {
+      console.log('Got video data: ');
       this.videoData = data;
     });
   }
