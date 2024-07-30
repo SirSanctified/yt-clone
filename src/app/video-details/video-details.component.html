@@ -1,1 +1,230 @@
-<p>video-details works!</p>
+<div class="row gap-5">
+  <div class="col-12 col-md-8">
+    <div class="position-relative">
+      @defer () {
+
+      <img
+        [src]="videoData?.thumbnail?.[0]?.url"
+        alt="Video Thumbnail"
+        class="w-100 rounded-3 image overflow-hidden object-fit-cover"
+      />
+
+      } @loading (minimum 2s) {
+      <div class="skeleton"></div>
+      }
+      <div class="position-absolute bottom-0 w-100 px-2">
+        <div class="progress mx-2" style="height: 3px">
+          <div
+            class="progress-bar bg-danger"
+            style="width: 10%; height: 3px"
+          ></div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex gap-2 align-items-center">
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Play(k)"
+            >
+              <fa-icon [icon]="play"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="NEXT(SHIFT+N)"
+            >
+              <fa-icon [icon]="next"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Mute(m)"
+            >
+              <fa-icon [icon]="volume"></fa-icon>
+            </button>
+            <small class="text-white fw-light"
+              >01:08 / {{ videoData?.lengthSeconds | duration }}</small
+            >
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Auto-play is on"
+            >
+              <fa-icon [icon]="autoPlay"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Subtitles/closed captions(c)"
+            >
+              <fa-icon [icon]="subtitles"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Settings"
+            >
+              <fa-icon [icon]="settings"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Multiplayer (i)"
+            >
+              <fa-icon [icon]="multiplayer"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Cinema mode(t)"
+            >
+              <fa-icon [icon]="cinemaMode"></fa-icon>
+            </button>
+            <button
+              class="btn fs-5 opacity-75 btn-link text-white"
+              title="Full screen(f)"
+            >
+              <fa-icon [icon]="fullscreen"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3 px-2">
+      <h1 class="fs-5 fw-bold text-break">{{ videoData?.title }}</h1>
+      <div class="d-flex align-items-center justify-content-between gap-3 mt-2">
+        <div class="d-flex align-items-center justify-content-start gap-1">
+          <a
+            routerLink="/chanel/{{ videoData?.channelId }}"
+            class="text-black text-decoration-none"
+          >
+            <img
+              [src]="videoData?.channelThumbnail?.[0]?.url ?? 'images/default.png'"
+              [alt]="videoData?.channelTitle"
+              [width]="40"
+              [height]="40"
+              class="rounded-circle me-2"
+            />
+          </a>
+          <div class="d-flex flex-column">
+            <a
+              class="text-black text-decoration-none"
+              routerLink="chanel/{{ videoData?.channelId }}"
+              >{{ videoData?.channelTitle }}</a
+            >
+            <small class="text-muted"
+              >{{ videoData?.subscriberCountText ?? 0 }} Subscribers</small
+            >
+          </div>
+
+          <button class="btn btn-danger rounded-5 ms-4" title="Subscribe">
+            Subscribe
+          </button>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 bg-secondary rounded-5">
+            <button class="btn like-btn text-white" title="I like this">
+              <fa-icon [icon]="like"></fa-icon>
+              <span class="ms-2">{{
+                videoData?.likeCount ?? 0 | formatNumber
+              }}</span>
+            </button>
+            <button class="btn dislike-btn text-white" title="I dislike this">
+              <fa-icon [icon]="dislike"></fa-icon>
+            </button>
+          </div>
+          <button class="btn btn-secondary rounded-5" title="More options">
+            <fa-icon [icon]="more"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="bg-secondary-subtle mt-3 p-3 rounded-3">
+        <div class="d-flex align-items-center justify-content-start gap-3">
+          <p class="m-0 fw-bold">
+            {{ videoData?.viewCount ?? 0 | formatNumber }} views
+          </p>
+          <p class="m-0">{{ videoData?.publishDate | timeFromNow }}</p>
+        </div>
+        <div
+          class="mt-1 gap-1"
+          [style]="
+            expand
+              ? 'display: flex; flex-direction: column'
+              : 'display: flex; flex-direction: row'
+          "
+        >
+          <p [class]="expand ? 'expanded' : 'collapsed'">
+            {{ videoData?.description }}
+          </p>
+          @if (expand) {
+          <div class="w-100">
+            <div
+              class="d-flex align-items-start justify-content-start flex-column"
+            >
+              <h2 class="fs-5 fw-bold">Transcript</h2>
+              <p class="fw-normal">Follow along using the transcript.</p>
+              <button
+                class="btn btn-outline-secondary text-primary rounded-5"
+                title="Show transcript"
+              >
+                Show Transcript
+              </button>
+            </div>
+            <div class="mt-4">
+              <div
+                class="d-flex align-items-center justify-content-start gap-1"
+              >
+                <a
+                  routerLink="/chanel/{{ videoData?.channelId }}"
+                  class="text-black text-decoration-none"
+                >
+                  <img
+                    [src]="videoData?.channelThumbnail?.[0]?.url ?? 'images/default.png'"
+                    [alt]="videoData?.channelTitle"
+                    [width]="40"
+                    [height]="40"
+                    class="rounded-circle me-2"
+                  />
+                </a>
+                <div class="d-flex flex-column">
+                  <a
+                    class="text-black text-decoration-none fs-4"
+                    routerLink="chanel/{{ videoData?.channelId }}"
+                    >{{ videoData?.channelTitle }}</a
+                  >
+                  <small class="text-muted"
+                    >{{
+                      videoData?.subscriberCountText ?? 0
+                    }}
+                    Subscribers</small
+                  >
+                </div>
+              </div>
+              <div
+                class="d-flex align-items-start justify-content-start gap-3 my-3"
+              >
+                <a
+                  routerLink="/chanel/{{ videoData?.channelId }}/videos"
+                  class="btn btn-outline-secondary rounded-5"
+                  title="Channel Videos"
+                >
+                  <fa-icon [icon]="videos" class="me-2"></fa-icon>
+                  Videos
+                </a>
+
+                <a
+                  routerLink="/chanel/{{ videoData?.channelId }}/about"
+                  class="btn btn-outline-secondary rounded-5"
+                  title="About Channel"
+                >
+                  <fa-icon [icon]="user" class="me-2"></fa-icon>
+                  About
+                </a>
+              </div>
+            </div>
+          </div>
+          }
+          <small
+            (click)="toggleExpand()"
+            [innerText]="expand ? 'Show Less' : 'more'"
+            class="text-muted small"
+          ></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

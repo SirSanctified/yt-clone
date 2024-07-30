@@ -27,6 +27,92 @@ export interface HomeVideoData {
   thumbnail: Thumbnail[];
   richThumbnail: RichThumbnail[];
 }
+export interface Subtitle {
+  languageName: string;
+  languageCode: string;
+  isTranslatable: boolean;
+  url: string;
+}
+
+export interface TranslationLanguage {
+  languageCode: string;
+  languageName: string;
+}
+
+export interface SubtitleResponse {
+  subtitles: Subtitle[];
+  format: string;
+  translationLanguages: TranslationLanguage[];
+}
+
+export interface Storyboard {
+  width: string;
+  height: string;
+  thumbsCount: string;
+  columns: string;
+  rows: string;
+  interval: string;
+  storyboardCount: number;
+  url: string[];
+}
+
+export interface ChannelThumbnail {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface VideoData {
+  type: string;
+  videoId: string;
+  title: string;
+  lengthText: string;
+  viewCount: string;
+  publishedTimeText: string;
+  thumbnail: Thumbnail[];
+  channelTitle: string;
+  channelId: string;
+  channelThumbnail: ChannelThumbnail[];
+}
+
+export interface RelatedVideo {
+  continuation: string;
+  data: VideoData[];
+}
+
+export interface VideoResponse {
+  id: string;
+  title: string;
+  lengthSeconds: string;
+  keywords: string[];
+  channelTitle: string;
+  channelId: string;
+  description: string;
+  thumbnail: Thumbnail[];
+  allowRatings: boolean;
+  viewCount: string;
+  isPrivate: boolean;
+  isUnpluggedCorpus: boolean;
+  isLiveContent: boolean;
+  isCrawlable: boolean;
+  isFamilySafe: boolean;
+  availableCountries: string[];
+  isUnlisted: boolean;
+  category: string;
+  publishDate: string;
+  uploadDate: string;
+  subtitles: Subtitle;
+  storyboards: Storyboard[];
+  superTitle?: any;
+  likeCount: string;
+  channelThumbnail: ChannelThumbnail[];
+  channelBadges: string[];
+  subscriberCountText: string;
+  subscriberCount: number;
+  commentCountText: string;
+  commentCount: number;
+  relatedVideos: RelatedVideo;
+}
 
 export interface HomeVideoResponse {
   filters: Filter[];
@@ -53,6 +139,13 @@ export class YoutubeVideosService {
     const data: HomeVideoResponse = await response.json();
     return data;
   }
-  getVideo() {}
+  async getVideo(id: string): Promise<VideoResponse> {
+    const response = await fetch(
+      `${this.baseUrl}video/info?id=${id}`,
+      this.options
+    );
+    const data: VideoResponse = await response.json();
+    return data;
+  }
   getVideoComments() {}
 }

@@ -1,0 +1,56 @@
+.image {
+  aspect-ratio: 16 / 9;
+}
+
+.skeleton {
+  height: 400px;
+  width: 100%;
+  background-color: #ccc;
+  animation: skeleton 2s infinite;
+}
+
+.skeleton-placeholder {
+  height: 400px;
+  width: 100%;
+  background-color: #ccc;
+}
+
+.like-btn {
+  border-radius: 10px 0 0 10px;
+  border-right: 1px #302c2c solid;
+}
+
+.dislike-btn {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.small {
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.expanded {
+  line-clamp: none;
+  -webkit-line-clamp: none;
+}
+
+.collapsed {
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: #ccc;
+  }
+  50% {
+    background-color: #eee;
+  }
+  100% {
+    background-color: #ccc;
+  }
+}
